@@ -1,0 +1,236 @@
+.project {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.project__visual {
+  position: relative;
+  aspect-ratio: 16 / 11;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--ink-sunk);
+  cursor: pointer;
+  transition: border-color 0.4s var(--ease);
+}
+
+.project--narrow .project__visual {
+  aspect-ratio: 8 / 7;
+}
+
+.project__visual > svg,
+.project__visual > .placeholder,
+.project__visual > .media {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.9s var(--ease);
+}
+
+/* fit: 'contain' in projects.js shows the whole picture (nothing cropped) on a dark background */
+.project--contain .project__visual {
+  background: #171916;
+}
+
+.project--contain .project__visual > .media {
+  object-fit: contain;
+}
+
+.project__visual > .pdf-thumb {
+  width: 100%;
+  height: 100%;
+}
+
+.project__visual:hover > .pdf-thumb {
+  transform: scale(1.05);
+  transition: transform 0.9s var(--ease);
+}
+
+.project__visual > .pdf-thumb > .media {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.project__visual > .placeholder--empty {
+  background: #171916;
+}
+
+.project__veil {
+  position: absolute;
+  right: 1rem;
+  bottom: 1rem;
+  padding: 0.55rem 1rem;
+  border-radius: 999px;
+  background: var(--lime);
+  color: var(--ink);
+  font-size: var(--step--1);
+  font-weight: 600;
+  opacity: 0;
+  transform: translateY(8px);
+  transition:
+    opacity 0.35s var(--ease),
+    transform 0.35s var(--ease);
+  pointer-events: none;
+}
+
+.project__visual:hover {
+  border-color: var(--lime);
+}
+
+.project__visual:hover > svg,
+.project__visual:hover > .placeholder,
+.project__visual:hover > .media {
+  transform: scale(1.05);
+}
+
+.project__visual:hover .project__veil {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.project__body {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1rem;
+}
+
+.project__head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem 0.9rem;
+}
+
+.project__title {
+  font-size: var(--step-2);
+}
+
+.project__badge {
+  padding: 0.25rem 0.7rem;
+  border: 1px solid var(--lime);
+  border-radius: 999px;
+  color: var(--lime);
+  font-size: var(--step--1);
+  font-weight: 500;
+}
+
+.project__summary {
+  max-width: 52ch;
+  color: var(--mute);
+}
+
+.project__tech {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.project__tech li {
+  padding: 0.3rem 0.75rem;
+  border-radius: 999px;
+  background: var(--ink-raised);
+  border: 1px solid var(--line);
+  font-size: var(--step--1);
+  color: var(--bone);
+}
+
+/* Touch screens have no hover, so keep the hint visible there. */
+@media (hover: none) {
+  .project__veil {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* ---- Featured cards (size: 'full'): a big picture with the text on top, like a film poster ---- */
+.project--full .project__visual {
+  aspect-ratio: 16 / 9;
+}
+
+@media (min-width: 900px) {
+  .project--full {
+    position: relative;
+    gap: 0;
+  }
+
+  .project--full .project__body {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: end;
+    gap: 0.9rem 2rem;
+    padding: clamp(5rem, 12vw, 9rem) clamp(1.5rem, 4vw, 2.75rem) clamp(1.5rem, 3.5vw, 2.5rem);
+    border-radius: 0 0 var(--radius) var(--radius);
+    background: linear-gradient(
+      to top,
+      rgba(16, 17, 15, 0.94) 0%,
+      rgba(16, 17, 15, 0.62) 45%,
+      rgba(16, 17, 15, 0) 100%
+    );
+    /* Clicks go through to the video; only the button below is clickable */
+    pointer-events: none;
+  }
+
+  .project--full .project__body > * {
+    grid-column: 1;
+  }
+
+  .project--full .project__title {
+    font-size: clamp(2.2rem, 1rem + 3.6vw, 3.75rem);
+  }
+
+  .project--full .project__summary {
+    max-width: 56ch;
+    color: #d3d3ca;
+  }
+
+  .project--full .project__body .btn {
+    grid-column: 2;
+    grid-row: 1 / span 3;
+    align-self: end;
+    min-height: 3.25rem;
+    padding: 0 1.75rem;
+    font-size: var(--step-0);
+    pointer-events: auto;
+    background: var(--lime);
+    border-color: var(--lime);
+    color: var(--ink);
+  }
+
+  .project--full .project__body .btn::before {
+    background: var(--bone);
+  }
+
+  .project--full .project__body .btn:hover,
+  .project--full .project__body .btn:focus-visible {
+    border-color: var(--bone);
+    color: var(--ink);
+  }
+
+  /* The text fades away while the film plays and comes back when it is paused or has ended. */
+  .project--full .project__body {
+    transition: opacity 0.45s ease, visibility 0s linear 0s;
+  }
+
+  .project--full.project--playing .project__body {
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.35s ease, visibility 0s linear 0.35s;
+  }
+
+  /* Paused or ended: lift the text a little so it does not cover the player controls */
+  .project--full.project--paused .project__body {
+    padding-bottom: clamp(4.5rem, 8vw, 5.5rem);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .project--full .project__body,
+    .project--full.project--playing .project__body { transition: none; }
+  }
+}

@@ -1,0 +1,176 @@
+.modal {
+  position: fixed;
+  inset: 0;
+  z-index: 80;
+  display: grid;
+  place-items: center;
+  padding: clamp(0.5rem, 3vw, 2rem);
+  background: rgba(8, 9, 7, 0.8);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  overflow-y: auto;
+}
+
+.modal__panel {
+  position: relative;
+  width: min(100%, 1040px);
+  max-height: calc(100svh - 1rem);
+  overflow-y: auto;
+  background: var(--ink-raised);
+  border: 1px solid var(--line-strong);
+  border-radius: var(--radius);
+}
+
+.modal__close {
+  position: absolute;
+  top: 0.9rem;
+  right: 0.9rem;
+  z-index: 2;
+  display: grid;
+  place-items: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  border: 1px solid var(--line-strong);
+  border-radius: 50%;
+  background: rgba(16, 17, 15, 0.85);
+  cursor: pointer;
+  transition:
+    background-color 0.3s var(--ease),
+    transform 0.4s var(--ease);
+}
+
+.modal__close span,
+.modal__close span::before {
+  display: block;
+  width: 1.1rem;
+  height: 2px;
+  background: var(--bone);
+  transition: background-color 0.3s;
+}
+
+.modal__close span {
+  position: relative;
+  transform: rotate(45deg);
+}
+
+.modal__close span::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  transform: rotate(90deg);
+}
+
+.modal__close:hover {
+  background: var(--lime);
+  transform: rotate(90deg);
+}
+
+.modal__close:hover span,
+.modal__close:hover span::before {
+  background: var(--ink);
+}
+
+.modal__media {
+  aspect-ratio: 16 / 9;
+  background: var(--ink-sunk);
+  border-bottom: 1px solid var(--line);
+}
+
+.modal__media > svg,
+.modal__media > .media {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.modal__content {
+  display: grid;
+  gap: 2rem;
+  padding: clamp(1.25rem, 4vw, 2.5rem);
+}
+
+.modal__title {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.4rem 1rem;
+  margin-bottom: 1rem;
+  font-size: var(--step-3);
+}
+
+.modal__subtitle {
+  font-family: var(--font-body);
+  font-size: var(--step-0);
+  font-weight: 500;
+  letter-spacing: 0;
+  color: var(--lime);
+}
+
+.modal__text {
+  max-width: 58ch;
+  color: var(--mute);
+}
+
+.modal__side {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.modal__facts {
+  display: grid;
+  gap: 1rem;
+}
+
+.modal__facts > div {
+  display: grid;
+  gap: 0.2rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--line);
+}
+
+.modal__facts dt {
+  font-size: var(--step--1);
+  color: var(--mute);
+}
+
+.modal__facts dd {
+  font-weight: 500;
+}
+
+.modal__tech {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+.modal__tech li {
+  padding: 0.25rem 0.65rem;
+  border: 1px solid var(--line-strong);
+  border-radius: 999px;
+  font-size: var(--step--1);
+  font-weight: 400;
+}
+
+.modal__links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+}
+
+@media (min-width: 820px) {
+  .modal__content {
+    grid-template-columns: 1.6fr 1fr;
+    gap: 3rem;
+  }
+}
+
+/* Projects with a media gallery get a wider window */
+.modal__panel--large {
+  width: min(100%, 1200px);
+}
+
+/* Descriptions can have several paragraphs (separated by a blank line in projects.js) */
+.modal__text + .modal__text {
+  margin-top: 1rem;
+}
