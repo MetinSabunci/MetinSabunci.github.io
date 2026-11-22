@@ -8,8 +8,8 @@ export const site = {
   programme: 'New Technology',
   availability: 'Open to internship',
 
-  // TODO: replace with your real email
-  email: 'your.email@example.com',
+
+  email: 'metin.sabunci@student.kdg.be',
 }
 
 export const navLinks = [
