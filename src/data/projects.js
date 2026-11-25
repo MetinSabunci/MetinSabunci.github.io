@@ -215,4 +215,21 @@ export const projects = [
       { type: 'video', src: 'media/post-production/video3.mp4', caption: 'Video 3' },
     ],
   },
+  {
+    id: 'depth-obstacle-detection',
+    title: 'Depth-Based Obstacle Detection',
+    subtitle: 'Prototype',
+    art: 'ar',
+    size: 'narrow',
+    summary:
+      "An early prototype that uses a headset's depth sensing to spot obstacles in a walking path and measure how far away they are.",
+    description:
+      "This is one of the research demos we built for a company that is still developing an application to help employees spot potentially dangerous things in their workplace. It is an early prototype, not a finished product.\n\nThe demo uses the headset's Depth API together with raycasting. Rays are sent out in front of the user. Where a ray hits the floor, the surface is treated as ground; where it hits something higher than the floor, it is marked as an obstacle. The Depth API is then used to measure how far away that obstacle is.\n\nThis is a first test of the idea. Its accuracy has not been formally validated yet, and we plan to keep testing and improving it.",
+    tech: ['Unity', 'Depth API', 'Raycasting', 'Obstacle Detection'],
+    details: [],
+    links: [],
+
+    film: 'media/depth/video.mp4',
+    detailsMedia: false,
+  },
 ]
