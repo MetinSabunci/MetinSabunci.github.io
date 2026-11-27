@@ -149,6 +149,9 @@ export const projects = [
       { type: 'image', src: 'media/3d/Image8.png', alt: 'Personal 3D project', caption: 'Personal 3D project' },
       { type: 'image', src: 'media/3d/Image9.png', alt: 'Personal 3D project', caption: 'Personal 3D project' },
       { type: 'image', src: 'media/3d/Image10.png', alt: 'Personal 3D project', caption: 'Personal 3D project' },
+      { type: 'image', src: 'media/3d/Image11.png', alt: 'Personal 3D project', caption: 'Personal 3D project' },
+      { type: 'image', src: 'media/3d/Image13.png', alt: 'Personal 3D project', caption: 'Personal 3D project' },
+      { type: 'image', src: 'media/3d/Image12.png', alt: 'Personal 3D project', caption: 'Personal 3D project' },
     ],
   },
   {
